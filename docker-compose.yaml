@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-admin}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  migrate:
+    container_name: migration_container
+    image: postgres
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:-admin}
+    volumes:
+       - ./setup/install.sql:/install.sql
+    entrypoint:
+      psql -h postgres -p 5432 -U admin -d postgres -f /install.sql
+    networks:
+      - postgres
+    profiles: ["migrate"] 
+    depends_on:
+      - postgres
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.ru}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  wiremock:
+    image: wiremock/wiremock
+    ports: 
+      - 3001:8080
+    volumes:
+      - ./wiremock:/home/wiremock
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:

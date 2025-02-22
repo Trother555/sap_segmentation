@@ -1,0 +1,39 @@
+{
+    "SEGMENTATION": [
+        {
+            "DATE_FROM": "2024-10-01T00:00:00Z",
+            "DATE_TO": "2024-12-31T00:00:00Z",
+            "ADDRESS_SAP_ID": "0802028355",
+            "ADR_SEGMENT": "Gold",
+            "SEGMENT_ID": 1
+        },
+        {
+            "DATE_FROM": "2024-10-01T00:00:00Z",
+            "DATE_TO": "2024-12-31T00:00:00Z",
+            "ADDRESS_SAP_ID": "0802112381",
+            "ADR_SEGMENT": "Gold",
+            "SEGMENT_ID": 1
+        },
+        {
+            "DATE_FROM": "2024-10-01T00:00:00Z",
+            "DATE_TO": "2024-12-31T00:00:00Z",
+            "ADDRESS_SAP_ID": "0802028542",
+            "ADR_SEGMENT": "Gold",
+            "SEGMENT_ID": 1
+        },
+        {
+            "DATE_FROM": "2024-10-01T00:00:00Z",
+            "DATE_TO": "2024-12-31T00:00:00Z",
+            "ADDRESS_SAP_ID": "0802028485",
+            "ADR_SEGMENT": "Gold",
+            "SEGMENT_ID": 1
+        },
+        {
+            "DATE_FROM": "2024-10-01T00:00:00Z",
+            "DATE_TO": "2024-12-31T00:00:00Z",
+            "ADDRESS_SAP_ID": "0802028456",
+            "ADR_SEGMENT": "Silver",
+            "SEGMENT_ID": 2
+        }
+    ]
+}
